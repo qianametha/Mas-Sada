@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Love Story</title>
+ 
+</head>
+<body>
+    <div class="floating-elements" id="floatingElements"></div>
+    <div class="container">
+        <div class="heart">💜</div>
+        
+        <div class="memory-wall">
+            <div class="polaroid" style="--rotation: -3deg">
+                <img src="meet.png" alt="First Meeting">
+                <div class="photo-caption">First Sight 💜</div>
+            </div>
+            <div class="polaroid" style="--rotation: 2deg">
+                <img src="date.jpg" alt="First Date">
+                <div class="photo-caption">First Date 🌟</div>
+            </div>
+            <div class="polaroid" style="--rotation: -2deg">
+                <img src="moment.png" alt="Special Moment">
+                <div class="photo-caption">Special Day ✨</div>
+            </div>
+            <div class="polaroid" style="--rotation: 3deg">
+                <img src="together.jpg" alt="Together">
+                <div class="photo-caption">Always Together 💫</div>
+            </div>
+            <div class="polaroid" style="--rotation: -1deg">
+                <img src="adventure.jpg" alt="Adventure">
+                <div class="photo-caption">Our Adventure 🌈</div>
+            </div>
+            <div class="polaroid" style="--rotation: 1deg">
+                <img src="love.jpg" alt="Love">
+                <div class="photo-caption">Pure Love 💖</div>
+            </div>
+        </div>
+
+        <div class="love-meter">
+            <div class="love-meter-fill"></div>
+        </div>
+
+        <div class="message" id="message">
+            Untuk seseorang yang menjadi alasan senyumku...
+        </div>
+
+        <div class="memory-timeline">
+            <div class="timeline-item">
+                <h3>Awal Pertemuan</h3>
+                <p>Saat pertama kali kita bertemu..., aku ga memperkirakan akan sejatuh ini.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>First Date</h3>
+                <p>Eh,ternyata kita belum date...</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Special Moment</h3>
+                <p>Setiap detik bersama mas itu terasa istimewa...</p>
+            </div>
+        </div>
+
+        <button class="btn" onclick="showMessage(1)">💜 Mulai Perjalanan Cinta 💜</button>
+        
+        <div id="message1" class="message hidden">
+            Setiap detak jantungku bernyanyi memuji keindahanmu. Dalam setiap hembusan nafas, namamu selalu terucap dalam doa-doaku yang paling dalam.
+        </div>
+        
+        <button class="btn hidden" id="btn2" onclick="showMessage(2)">💜 Lanjutkan 💜</button>
+        
+        <div id="message2" class="message hidden">
+            Terimakasih sudah jadi bintang yang nerangin malam ku, mentari yang menghangatkan pagiku, dan bulan yang setia menemani setiap langkahku.
+        </div>
+        
+        <button class="btn hidden" id="btn3" onclick="showMessage(3)">💜 Masih Ada 💜</button>
+        
+        <div id="message3" class="message hidden">
+            Bersamamu, setiap detik terasa begitu berharga. Setiap pandangan mata menyimpan sejuta makna. Setiap sentuhan menggetarkan jiwa.
+        </div>
+
+        <div class="surprise-box" onclick="revealSurprise()">
+            Click for a Sweet Surprise! 🎁
+        </div>
+    </div>
+
+    <script>
+        const elements = ['💜', '✨', '🌟', '💫', '♥️'];
+        
+        function createFloatingElement() {
+            const container = document.getElementById('floatingElements');
+            const element = document.createElement('div');
+            element.className = 'floating-element';
+            element.innerHTML = elements[Math.floor(Math.random() * elements.length)];
+            element.style.left = Math.random() * 100 + 'vw';
+            element.style.animationDuration = 5 + Math.random() * 10 + 's';
+            container.appendChild(element);
+            setTimeout(() => element.remove(), 8000);
+        }
+
+        setInterval(createFloatingElement, 300);
+
+        function showMessage(num) {
+            document.getElementById(`message${num}`).classList.remove('hidden');
+            document.getElementById(`btn${num+1}`)?.classList.remove('hidden');
+            if (num === 3) {
+                setTimeout(revealSurprise, 1000);
+            }
+        }
+
+        function revealSurprise() {
+            createEmojiRain();
+            fillLoveMeter();
+            showSecretMessage();
+        }
+
+        function createEmojiRain() {
+            const emojis = ['💜', '✨', '🌟', '💫', '🎵', '🦋', '🌸'];
+            for (let i = 0; i < 50; i++) {
+                const emoji = document.createElement('div');
+                emoji.className = 'floating-element';
+                emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.left = Math.random() * 100 + 'vw';
+                emoji.style.animationDuration = 3 + Math.random() * 2 + 's';
+                document.body.appendChild(emoji);
+                setTimeout(() => emoji.remove(), 3000);
+            }
+        }
+
+        function fillLoveMeter() {
+            const meter = document.querySelector('.love-meter-fill');
+            meter.style.width = '100%';
+        }
+
+        function showSecretMessage() {
+            const messages = [
+                "You're my everything! 💜",
+                "Forever yours! ✨",
+                "You make my heart smile! 🌟",
+                "Kamu adalah segalanya bagiku! 💜",
+                "Selamanya bersamamu! ✨",
+                "Kamu membuat hatiku tersenyum! 🌟"
+            ];
+            const message = document.createElement('div');
+            message.className = 'secret-message';
+            message.innerHTML = messages[Math.floor(Math.random() * messages.length)];
+            document.body.appendChild(message);
+            setTimeout(() => message.remove(), 3000);
+        }
+
+        // Initialize love meter on load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const meter = document.querySelector('.love-meter-fill');
+                meter.style.width = '50%';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
